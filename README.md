@@ -10,7 +10,7 @@ Tech entrepreneur based in Yokohama Japan
 
 [LiftIgniter](https://www.liftigniter.com)
 
-[pierx.co](https://pierx.co)
+[PierX](https://pierx.co)
 
 [namegear](https://namegear.co)
 
