@@ -14,4 +14,5 @@
 
 [ブランドドメインの活用](ブランドドメインの活用.md)
 
-[今さら聞けないGoogle Analyticsのあれこれ](今さら聞けないGoogle Analyticsのあれこれ.md)
+[今さら聞けないGoogle Analyticsのあれこれ](今さら聞けないGoogleAnalyticsのあれこれ.md)
+
