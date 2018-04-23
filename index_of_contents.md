@@ -12,6 +12,8 @@
 
 [.comで多発するサイバースクワッティング](articles/comで多発するサイバースクワッティング.md)
 
+[2018年4月 Webトレンドあれこれあれこれ](articles/201804_Webトレンドあれこれあれこれ.md)
+
 [ブランドドメインの活用](articles/ブランドドメインの活用.md)
 
 [今さら聞けないGoogle Analyticsのあれこれ](articles/今さら聞けないGoogleAnalyticsのあれこれ.md)
