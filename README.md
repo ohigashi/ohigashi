@@ -3,7 +3,7 @@
 ## About
 Tech entrepreneur based in Yokohama Japan
 
-## Projects
+## Current Projects
 [Chartbeat](https://chartbeat.com)
 
 [LiftIgniter](https://www.liftigniter.com)
