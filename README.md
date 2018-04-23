@@ -1,6 +1,8 @@
 # ohigashi
 
 ## About
+Hirokatsu Ohigashi
+
 Tech entrepreneur based in Yokohama Japan
 
 ## Current Projects
