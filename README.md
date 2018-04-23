@@ -19,5 +19,5 @@ Tech entrepreneur based in Yokohama Japan
 ### Twitter
 [@h_ohigashi](https://twitter.com/h_ohigashi)
 
-### LINKEDIN
+### Linkedin
 [ohigashi](https://www.linkedin.com/in/ohigashi/)
