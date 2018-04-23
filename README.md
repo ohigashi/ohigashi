@@ -1,6 +1,8 @@
 # ohigashi
 
 ## About
+大東洋克
+
 Hirokatsu Ohigashi
 
 Tech entrepreneur based in Yokohama Japan
