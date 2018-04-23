@@ -6,7 +6,7 @@ Tech entrepreneur based in Yokohama Japan
 ## Projects
 [Chartbeat](https://chartbeat.com)
 
-[LiftIgniter](https://liftigniter.com)
+[LiftIgniter](https://www.liftigniter.com)
 
 [pierx.co](https://pierx.co)
 
