@@ -33,6 +33,11 @@
 </amp-analytics>
 ```
 
+## Canonical Linkの設定
+
+AMPページにおいては、通常のデスクトップ/モバイル向けのページと同様に<link rel="canonical"を使うか、AMPのvarsの中でuseCanonicalを宣言する。
+Chartbeatでは、<link rel="canonicalを参照してCanonical Linkを認識する。
+
 ## 追記
 
 Chartbeatのドメイン追加とコードの確認は[https://chartbeat.com/publishing/setup/code](https://chartbeat.com/publishing/setup/code)から。
