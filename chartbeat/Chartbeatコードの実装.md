@@ -1,6 +1,6 @@
 # Chartbeatコードの実装
 
-1. 下記コードをWebサイトの<head>部内に追加する。 
+1. 下記コードをWebサイトの```<head>```部内に追加する。 
 
 ```
 <script type="text/javascript">
@@ -15,12 +15,12 @@
 <script async src="//static.chartbeat.com/js/chartbeat_mab.js"></script>
 ```
 
-Canonicalリンクを使用する場合は、下記のように<head>部内のスクリプトの前に設定しておく。
+Canonicalリンクを使用する場合は、下記のように```<head>```部内のスクリプトの前に設定しておく。
 ```
 <link rel="canonical" href="http://www.seomoz.org/blog">
 ```
 
-2. 下記コードをWebサイトの</body>タグ前に追加する。 
+2. 下記コードをWebサイトの```</body>```タグ前に追加する。 
 
 ```
 <script type='text/javascript'>
