@@ -12,11 +12,14 @@
 
 1. AMPページの<head>部内に下記コードを追加する
 
-```<script async custom-element="amp-analytics" src="https://cdn.ampproject.org/v0/amp-analytics-0.1.js"></script> ```
+```
+<script async custom-element="amp-analytics" src="https://cdn.ampproject.org/v0/amp-analytics-0.1.js"></script>
+```
 
 2. AMPページの</body>タグ前に下記コードを追加する（uidとdomainの値は実装するサイトのUIDとドメイン名に置き換える、Section名やAuthor名も同様にページごとに適宜変更する。ここではJSONで表記する。）
 
-```<amp-analytics type="chartbeat">
+```
+<amp-analytics type="chartbeat">
     <script type="application/json">
         {
             "vars": {
@@ -27,7 +30,8 @@
             }
         }
     </script>
-</amp-analytics>```
+</amp-analytics>
+```
 
 ## 追記
 
