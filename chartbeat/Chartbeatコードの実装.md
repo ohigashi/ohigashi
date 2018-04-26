@@ -26,9 +26,9 @@ Canonicalリンクを使用する場合は、下記のように```<head>```部�
 <script type='text/javascript'>
     var _sf_async_config = _sf_async_config || {};
     /** CONFIGURATION START **/
-    _sf_async_config.sections = 'Change this to your Section name'; //CHANGE THIS
-    _sf_async_config.authors = 'Change this to your Author name'; //CHANGE THIS
-    /** CONFIGURATION END **/
+    _sf_async_config.sections = 'Change this to your Section name'; //ここにセクション名を入れる
+    _sf_async_config.authors = 'Change this to your Author name'; //ここに著者名を入れる
+    /** CONFIGURATION END **/
     (function() {
         function loadChartbeat() {
             var e = document.createElement('script');
