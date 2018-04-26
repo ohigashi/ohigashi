@@ -46,3 +46,9 @@ Canonicalリンクを使用する場合は、下記のように```<head>```部�
     })();
 </script>
 ```
+
+## 追記
+
+Chartbeatのドメイン追加とコードの確認は[https://chartbeat.com/publishing/setup/code](https://chartbeat.com/publishing/setup/code)から。
+
+同じRootドメイン下でサブドメインごとに別サイトとして分析したい場合もここからサブドメインを追加してコードを取得する。
