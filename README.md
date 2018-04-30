@@ -7,7 +7,12 @@ Hirokatsu Ohigashi
 
 Tech entrepreneur based in Yokohama Japan
 
-## Current Projects
+## Contact
+
+Twitter: [@h_ohigashi](https://twitter.com/h_ohigashi)
+
+## Projects
+
 [Chartbeat](https://chartbeat.com)
 
 [LiftIgniter](https://www.liftigniter.com)
@@ -17,10 +22,6 @@ Tech entrepreneur based in Yokohama Japan
 [namegear](https://namegear.co)
 
 [PSI-JAPAN](https://psi.jp)
-
-## Contact
-
-Twitter: [@h_ohigashi](https://twitter.com/h_ohigashi)
 
 ## Contents
 
