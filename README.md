@@ -26,8 +26,6 @@ Twitter: [@h_ohigashi](https://twitter.com/h_ohigashi)
 
 過去のBlog記事やプロジェクト絡みのニュースレーター記事などを保存しています。
 
-[README](README.md)
-
 [2017_2Q_Verisign_Domain_Industry_Brief](articles/2017_2Q_Verisign_Domain_Industry_Brief.md)
 
 [2017_3Q_Verisign_Domain_Industry_Brief](articles/2017_3Q_Verisign_Domain_Industry_Brief.md)
