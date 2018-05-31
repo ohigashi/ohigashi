@@ -12,9 +12,14 @@ A/Bテストを実施する場合には、このドキュメントの下部に�
 
 ## ビーコンでWebサイトのデータを収集する
 
-LIを実装するサイト内のすべてのページにビーコンのコードを貼ります。通常のコンテンツ記事だけではなく、動画、商品ページなどにも貼れます。このコードを貼ったページに訪問があると、スクリプトがそのページをリコメンデーションの対象（インベントリアイテム）として、自動的にデータを収集します。デフォルトでは、収集されたデータは最後の訪問から30日を経過すると無効になります。
+LIを実装するサイト内のすべてのページにビーコンのコードを貼ります。通常のコンテンツ記事だけではなく、動画、商品ページなどにも貼れます。このコードを貼ったページに訪問があると、スクリプトがそのページに関連するデータを収集します。収集されるデータの内容は、大きく分けて下記の2つです。
 
-このビーコンがLIのJS SDKを呼び出して、$p関数を使えるようにします。同時に、トラッキング目的でユニークユーザを特定するためのファーストパーティーCookieを読み込ませます。
+訪問したページの情報（metdataその他）
+ユーザの行動（訪問したページ、エンゲージメントデータ、表示されたリコメンデーションの内容など）
+
+これらの情報を収集すると同時に、LIからリコメンデーションアイテムが提供されます。なお、デフォルトでは収集されたデータは最後の訪問から30日を経過すると無効になります。
+
+このビーコンがｙお見込まれると同時にLIのJS SDKを呼び出して、$p関数を使えるようにします。同時に、トラッキング目的でユニークユーザを特定するためのファーストパーティーCookieを読み込ませます。
 
 ### ビーコンのコード  
 
@@ -43,7 +48,7 @@ if (typeof $igniter_var === 'undefined') {
 
 `//cdn.petametrics.com/`の後と、`$p("init")` 関数のJS_KEYを必ず差し替えてください。
 
-実際にデータが収集されると、ネットワークログに`_inventory.gif`が表示されます。
+実際にデータの収集が開始されると、ネットワークログに`_inventory.gif`が表れます。
 
 ### ビーコンいろいろ（オプション）
 
@@ -70,7 +75,32 @@ if (typeof $igniter_var === 'undefined') {
 </script>
 ```
 
+### タイムスタンプ（オプション）
+
 タイムスタンプを使用してルールの適用を行う場合は、`article:published_time`のフィールドを追加してください。`article:modified_time`や、`article:expiration_time`もルールの中で使用することができます。ここでのタイムスタンプのフォーマットは、[ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html)に準ずる形式で指定してください。
+
+### カスタムイベントの送信（オプション）
+
+カスタムのイベント（エンゲージメント、コンバージョンなど）を送りたい場合は、下記のように`$p("send")`関数を使ってイベントのデータを送ってください。
+
+```
+$p("send", "engaged",{
+  FIELD1: "VALUE1",
+  FIELD2: "VALUE2"
+})
+
+$p('send', 'pageview', {
+  u_gender: "male",
+  u_type: "subscribed"
+})
+
+$p('send', 'conversion', {
+  u_gender: "male",
+  u_type: "subscribed"
+})
+```
+
+### ユーザIDの送信（オプション）
 
 ページ閲覧ごとにユーザIDを追加して送りたい場合は、下記の通り`$p("init")`と`$("send") `の間に`$p("setUserId")`を追加してください。異なるデバイス間のユーザの行動をトラックすることができます。
 
@@ -166,7 +196,7 @@ $p('register', {
 $p('fetch');
 ```
 
-### リコメンデーションいろいろ（オプション）
+### リコメンデーションアイテムのフィルタリング（オプション）
 
 ここでアイテムのフィルタリングを行いたい場合は、ウィジェット単位で、下記のように`opts:`で条件を指定して、アイテムのフィルタリングを行うことができます。
 
@@ -193,6 +223,55 @@ $p("register",{
   }
 })
 ```
+
+### 同一ページで複数のウィジェットのリコメンデーションのリクエストを送る（オプション）
+
+`$p("register")`は、`$p("fetch")`の前に複数回呼ぶことができます。それぞれの`$p("register")`に対して、個別の`opts`のパラメータを指定することができます。
+
+```
+// Requests for articles that were published within last 24 hours
+$p("register",{
+  max:5,
+  widget: "new_news", // ここに個別のウィジェット名を入れます
+  opts: {maxAgeInSeconds: 60*60*24},
+  callback: function(resp){
+    console.log(resp)
+  }
+})
+
+// Requests for articles that's marked as news.
+$p("register",{
+  max:5,
+  widget: "news_rec", // ここに個別のウィジェット名を入れます
+  opts: {channel: "news"},
+  callback: function(resp){
+    console.log(resp)
+  }
+})
+
+// Calling fetch once executes both registers.
+// Results in two different kinds of recommendations.
+$p("fetch")
+```
+
+### 追加のフィールド名を指定する
+
+リコメンデーションアイテムと一緒に返されるフィールドを指定する。
+```
+$p("setRequestFields",["name","title","url"])
+```
+
+指定したすべてのフィールドに値を持つアイテムだけを取得する。
+```
+$p("setRequestFieldsAON",true)
+```
+
+アイテムの必須フィールドを指定する。
+```
+$p("setMandatoryRequestFields",["title","url"])
+```
+
+収集するフィールド名の追加は、上に記した`<script id="liftigniter-metadata" type="application/json">`を使って各ページのHTMLにLI用のJSONとしてデータを作成してください。
 
 ---
 
