@@ -125,7 +125,7 @@ LiftIgniter<br> Recommendations
 実際にリコメンデーションアイテムを呼び出して表示します。
 
 ```
-//-- 1. Define Rendering Area --
+//-- 1. リコメンデーションの表示領域を定義する --
 //$p('render') は、HTMLで指定されたテンプレートで、ターゲットのエリアをLIのリコメンデーションアイテムで上書きします。 
 var rendering_callback = function(resp) {
   var els = document.querySelectorAll('#li-recommendation-unit > div.li-widget-item');
@@ -137,7 +137,7 @@ var rendering_callback = function(resp) {
   }
 }
 
-//-- 2. Define Items to be Tracked --
+//-- 2. トラックするアイテムを定義する --
 //$p('track') は、イベントリスナーと、クエリ文字列のパラメータをリコメンデーションエリアの各URLにアタッチします。
 var trackAlgo = function(algorithm) {
   $p('track', {
@@ -148,7 +148,7 @@ var trackAlgo = function(algorithm) {
   });
 }
 
-//-- 3. Request Recommendations --
+//-- 3. リコメンデーションのリクエスト --
 $p('register', {
   max: 4,
   widget: 'default-widget',
@@ -213,6 +213,7 @@ LiftIgniter<br> Recommendations
 実際にリコメンデーションアイテムを呼び出して表示します。ここでは、A/Bテストとして、既にあるリコメンデーションを上書きする場合を想定しています。
 
 ```
+//-- 1. リコメンデーションの表示領域を定義する --
 //$p('render') は、HTMLで指定されたテンプレートで、ターゲットのエリアをLIのリコメンデーションアイテムで上書きします。 
 var rendering_callback = function(resp) {
   var els = document.querySelectorAll('#li-recommendation-unit > div.li-widget-item');
@@ -224,6 +225,7 @@ var rendering_callback = function(resp) {
   }
 }
 
+//-- 2. トラックするアイテムを定義する --
 //$p('track') は、イベントリスナーと、クエリ文字列のパラメータをリコメンデーションエリアの各URLにアタッチします。
 var trackAlgo = function(algorithm) {
   $p('track', {
@@ -234,7 +236,8 @@ var trackAlgo = function(algorithm) {
   });
 }
 
-//-------- SWITCHING BASE AND LI RECOMMENDATIONS IN THIS FIDDLE ------------
+//-- 3. リコメンデーションのリクエスト --
+//-------- ここでA/Bテスト対象とLIのリコメンデーションを制御する ------------
 // To switch between showing base and LI recommendations, change the > or < sign in line 51 to the opposite, then Run the fiddle again.
 var abTestHandler = function(slice) {
   // Slice is modulo 100 of the cookie hash.
