@@ -83,6 +83,10 @@ $p("send", "pageview");
 
 LIのリコメンデーションを表示するエリアのHTMLサンプルです。A/Bテストを行う場合は、下記のA/Bテスト用ウィジェットを参照してください。
 
+各ウィジェットには`div id`を指定してください。
+
+`{{}}`のテンプレート内のパラメータは、インベントリのmetadataのパラメータと一致するようにしてください。
+
 ```
 <center><h1>
 LiftIgniter<br> Recommendations
@@ -106,9 +110,10 @@ LiftIgniter<br> Recommendations
     <a class='headline' href='//url-4'>Title 4</a>
   </div>
 </div>
-<script type="application/mustache" id="recommended-item-template">
+
+<script type="application/mustache" id="li-recommendation-template"">
   <div class='recommended_item'>
-    <a class='headline' href='{{url}}'>
+    <a href='{{url}}'>
       <div>{{title}}</div>
       <div><img src="{{thumbnail}}"></div>
     </a>
@@ -127,7 +132,7 @@ LiftIgniter<br> Recommendations
 //$p('render') は、HTMLで指定されたテンプレートで、ターゲットのエリアをLIのリコメンデーションアイテムで上書きします。 
 var rendering_callback = function(resp) {
   var els = document.querySelectorAll('#li-recommendation-unit > div.li-widget-item');
-  var template = document.querySelector('#recommended-item-template').innerHTML;
+  var template = document.querySelector('#li-recommendation-template"').innerHTML;
 
   for (var i = 0; i < els.length && i < resp.items.length; ++i) {
     // Basically Mustache.render(template, resp.items[i]); 
@@ -148,7 +153,7 @@ var trackAlgo = function(algorithm) {
 
 //-- 3. リコメンデーションのリクエスト --
 $p('register', {
-  max: 4,
+  max: 4, // 表示するアイテムの数
   widget: 'default-widget',
   callback: function(resp) {
     // このcallbackのコードはの中にwrapすることで、ロードの順番の問題を解消することができます。
@@ -194,9 +199,9 @@ LiftIgniter<br> Recommendations
 </div>
 
 <!--Widget Display Template-->
-<div id="recommended-item-template">
-  <div style="text-align: center;"  class='recommended_item'>
-    <a class='headline' href='{{url}}'>
+<div id="li-recommendation-template"">
+  <div class='recommended_item'>
+    <a href='{{url}}'>
       <div>{{title}}</div>
       <div><img src="{{thumbnail}}"></div>
     </a>
@@ -215,7 +220,7 @@ LiftIgniter<br> Recommendations
 //$p('render') は、HTMLで指定されたテンプレートで、ターゲットのエリアをLIのリコメンデーションアイテムで上書きします。 
 var rendering_callback = function(resp) {
   var els = document.querySelectorAll('#li-recommendation-unit > div.li-widget-item');
-  var template = document.querySelector('#recommended-item-template').innerHTML;
+  var template = document.querySelector('#li-recommendation-template"').innerHTML;
 
   for (var i = 0; i < els.length && i < resp.items.length; ++i) {
     // Basically Mustache.render(template, resp.items[i]); 
@@ -243,7 +248,7 @@ var abTestHandler = function(slice) {
     // Register call to overwrite widget being tested with LI recommendations,
     // and track metrics appropriately.
     $p('register', {
-      max: 4,
+      max: 4, // 表示するアイテムの数
       widget: 'default-widget',
       callback: function(resp) {
     // このcallbackのコードはの中にwrapすることで、ロードの順番の問題を解消することができます。
