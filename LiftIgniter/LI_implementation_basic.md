@@ -38,7 +38,7 @@ type="application/json">
 </script>
 ```
 
-タイムスタンプを使用してルールの適用を行う場合は、`article:published_time`のフィールドを追加してください。`article:modified_time`や、`article:expiration_time`もルールの中で使用することができます。
+タイムスタンプを使用してルールの適用を行う場合は、`article:published_time`のフィールドを追加してください。`article:modified_time`や、`article:expiration_time`もルールの中で使用することができます。ここでのタイムスタンプのフォーマットは、[ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html)に準ずる形式で指定してください。
 
 ---
 
@@ -166,6 +166,32 @@ $p('register', {
 
 
 $p('fetch');
+```
+
+ここでアイテムのフィルタリングを行いたい場合は、ウィジェット単位で、下記のようにアイテムのフィルタリングを行うことができます。
+
+24時間（86400秒）以内にPublishされたアイテムだけをリクエストする。
+```
+$p("register",{
+  max:5,
+  widget: 'default-widget',
+  opts: {maxAgeInSeconds: 86400},
+  callback: function(resp){
+    console.log(resp)
+  }
+})
+```
+
+`new`のカテゴリのアイテムだけをリクエストする。
+```
+$p("register",{
+  max:5,
+  widget: 'default-widget',
+  opts: {category: "news"},
+  callback: function(resp){
+    console.log(resp)
+  }
+})
 ```
 
 ---
