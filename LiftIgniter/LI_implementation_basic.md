@@ -16,7 +16,7 @@
 
 サイト内のすべてのページにこのビーコンのコードを貼ります。通常のコンテンツ記事、動画、商品ページなどどこにでも貼れます。このコードを貼ったページに訪問があると、そのページのデータを自動的に収集します。
 
-`//cdn.petametrics.com/`の後と、`$p("init")` 関数のJS keyを必ず差し替えてください。
+`//cdn.petametrics.com/`の後と、`$p("init")` 関数のJS_KEYを必ず差し替えてください。
 
 実際にデータが収集されているか確かめる場合は、ネットワークログに`_inventory.gif`があるか確認してください。
 
@@ -71,11 +71,20 @@ if (typeof $igniter_var === 'undefined') {
     e.async = 1;
     e.src = p + '?ts=' + (+new Date() / 3600000 | 0);
     r.parentNode.insertBefore(e, r)
-  })(window, document, 'script', '//cdn.petametrics.com/f7tsbsle43k5irci.js', '$p');
-  // "f7tsbsle43k5irci"の部分は、自身のアカウントのJS keyに差し替えます。$p("init")関数の値も変更してください。
+  })(window, document, 'script', '//cdn.petametrics.com/JS_KEY.js', '$p');
+  // "JS_KEY"の部分は、自身のアカウントのJS_KEYに差し替えます。$p("init")関数の値も変更してください。
 
-  $p("init", "f7tsbsle43k5irci");
+  $p("init", "JS_KEY"); // JS_KEYを差し替える
+  $p("send", "pageview");
 }
+```
+
+ここでユーザIDをビーコンに追加して送りたい場合は、下記の通り`$p("init")`と`$("send") `の間に`$p("setUserId")`を追加してください。
+
+```
+$p("init", "JS_KEY");
+$p("setUserId", USER_ID); // USER_ID should be a string.
+$p("send", "pageview");
 ```
 
 ---
