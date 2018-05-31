@@ -104,6 +104,7 @@ LIのリコメンデーションを表示するエリアのHTMLサンプルで�
   </div>
 </div>
 
+<!--ウィジェット表示のテンプレート-->
 <script type="application/mustache" id="li-recommendation-template"">
   <div class='recommended_item'>
     <a href='{{url}}'>
@@ -213,7 +214,7 @@ LIのリコメンデーションをA/Bテストしながら表示するエリア
   </div>
 </div>
 
-<!--Widget Display Template-->
+<!--ウィジェット表示のテンプレート-->
 <div id="li-recommendation-template"">
   <div class='recommended_item'>
     <a href='{{url}}'>
