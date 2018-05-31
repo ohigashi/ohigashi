@@ -47,8 +47,8 @@ LiftIgniter<br> Recommendations
 ---
 ## スクリプト
 
+ビーコン
 ```
-//---------- BEACON SNIPPET START------------
 // このビーコンがLIのJS SDKを呼び出して、$pを使えるようにする。同時に、トラッキング目的でユニークユーザを特定するためのファーストパーティーCookieを読み込みます。
 
 if (typeof $igniter_var === 'undefined') {
@@ -70,10 +70,10 @@ if (typeof $igniter_var === 'undefined') {
 
   $p("init", "f7tsbsle43k5irci");
 }
-//---------- BEACON SNIPPET END------------
+```
 
-//---------- WIDGET CODE START------------
-
+ウィジェットコード
+```
 //-- 1. Define Rendering Area --
 //$p('render') は、HTMLで指定されたテンプレートで、ターゲットのエリアをLIのリコメンデーションアイテムで上書きします。 
 var rendering_callback = function(resp) {
@@ -112,8 +112,6 @@ $p('register', {
 
 
 $p('fetch');
-
-//---------- WIDGET CODE END------------
 ```
 
 ---
@@ -159,8 +157,8 @@ LiftIgniter<br> Recommendations
 ---
 ## A/Bテスト用スクリプト
 
+ビーコン
 ```
-//---------- BEACON SNIPPET START------------
 // このビーコンがLIのJS SDKを呼び出して、$pを使えるようにする。同時に、トラッキング目的でユニークユーザを特定するためのファーストパーティーCookieを読み込みます。
 
 if (typeof $igniter_var === 'undefined') {
@@ -182,8 +180,10 @@ if (typeof $igniter_var === 'undefined') {
 
   $p("init", "f7tsbsle43k5irci");
 }
-//---------- BEACON SNIPPET END------------
+```
 
+ウィジェットコード
+```
 //$p('render') は、HTMLで指定されたテンプレートで、ターゲットのエリアをLIのリコメンデーションアイテムで上書きします。 
 var rendering_callback = function(resp) {
   var els = document.querySelectorAll('#li-recommendation-unit > div.li-widget-item');
