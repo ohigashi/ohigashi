@@ -1,12 +1,82 @@
 リコメンデーションエリアHTML
 
-[ウィジェット](#ウィジェット)  
+
 [ビーコン](#ビーコン)   
+[ビーコンのコード](#ビーコンのコード)
+
+[ウィジェット](#ウィジェット)  
 [ウィジェットコード](#ウィジェットコード)   
 
 [A/Bテスト用ウィジェット](#A/Bテスト用ウィジェット)  
-[A/Bテスト用ビーコン](#A/Bテスト用ビーコン)   
 [A/Bテスト用ウィジェットコード](#A/Bテスト用ウィジェットコード)   
+
+---
+
+## ビーコン
+
+サイト内のすべてのページにこのビーコンのコードを貼ります。通常のコンテンツ記事、動画、商品ページなどどこにでも貼れます。このコードを貼ったページに訪問があると、そのページのデータを自動的に収集します。
+
+`//cdn.petametrics.com/`の後と、`$p("init")` 関数のJS keyを必ず差し替えてください。
+
+実際にデータが収集されているか確かめる場合は、ネットワークログに`_inventory.gif`があるか確認してください。
+
+ここで収集されるmetadataは下記のとおりです。LI用のJSONとOpenGraphタグで重複がある場合は、基本的にLI用のJSONの値が優先されます。
+
+* LI用のJSON
+```
+<script id="liftigniter-metadata"
+type="application/json">
+{ "tags" : ["apple", "nutrition"]}
+</script>
+```
+* OpenGraphタグ
+```
+<meta property="og:title" content="sample-title"/>
+```
+
+データの収集は、ページに訪問があってこのビーコンが呼び出されてはじめて行われます。デフォルトでは、収集されたデータは最後に訪問があってから30日を経過すると無効になります。
+
+ビーコンを貼ったページをリコメンデーションの対象にしたくない場合は、下記のコードを`<head>`部内に追加してください。
+
+```
+<script id="liftigniter-metadata" type="application/json">
+{
+  ...
+  "noShow" : "true",
+  ...
+}
+</script>
+```
+
+タイムスタンプを使用してルールの適用を行う場合は、`article:published_time`のフィールドを追加してください。`article:modified_time`や、`article:expiration_time`もルールの中で使用することができます。
+
+---
+
+## ビーコンのコード
+
+```
+// このビーコンがLIのJS SDKを呼び出して、$pを使えるようにする。同時に、トラッキング目的でユニークユーザを特定するためのファーストパーティーCookieを読み込みます。
+
+if (typeof $igniter_var === 'undefined') {
+  // クライアントコードをアップデート
+  (function(w, d, s, p, v, e, r) {
+    w.$ps = (w.performance && w.performance.now && typeof(w.performance.now) == "function") ? w.performance.now() : undefined;
+    w['$igniter_var'] = v;
+    w[v] = w[v] || function() {
+      (w[v].q = w[v].q || []).push(
+        arguments)
+    };
+    w[v].l = 1 * new Date();
+    e = d.createElement(s), r = d.getElementsByTagName(s)[0];
+    e.async = 1;
+    e.src = p + '?ts=' + (+new Date() / 3600000 | 0);
+    r.parentNode.insertBefore(e, r)
+  })(window, document, 'script', '//cdn.petametrics.com/f7tsbsle43k5irci.js', '$p');
+  // "f7tsbsle43k5irci"の部分は、自身のアカウントのJS keyに差し替えます。$p("init")関数の値も変更してください。
+
+  $p("init", "f7tsbsle43k5irci");
+}
+```
 
 ---
 
@@ -49,68 +119,6 @@ LiftIgniter<br> Recommendations
 ```
 
 ---
-
-## ビーコン
-
-サイト内のすべてのページにこのビーコンのコードを貼ります。通常のコンテンツ記事、動画、商品ページなどどこにでも貼れます。このコードを貼ったページに訪問があると、そのページのデータを自動的に収集します。
-
-`//cdn.petametrics.com/`の後と、`$p("init")` 関数のJS keyを必ず差し替えてください。
-
-実際にデータが収集されているか確かめる場合は、ネットワークログに`_inventory.gif`があるか確認してください。
-
-ここで収集されるmetadataは下記のとおりです。LI用のJSONとOpenGraphタグで重複がある場合は、基本的にLI用のJSONの値が優先されます。
-
-* LI用のJSON
-```
-<script id="liftigniter-metadata"
-type="application/json">
-{ "tags" : ["apple", "nutrition"]}
-</script>
-```
-* OpenGraphタグ
-```
-<meta property="og:title" content="sample-title"/>
-```
-
-データの収集は、ページに訪問があってこのビーコンが呼び出されてはじめて行われます。デフォルトでは、収集されたデータは最後に訪問があってから30日を経過すると無効になります。
-
-ビーコンを貼ったページをリコメンデーションの対象にしたくない場合は、下記のコードを`<head>`部内に追加してください。
-
-```
-<script id="liftigniter-metadata" type="application/json">
-{
-  ...
-  "noShow" : "true",
-  ...
-}
-</script>
-```
-
-タイムスタンプを使用してルールの適用を行う場合は、`article:published_time`のフィールドを追加してください。`article:modified_time`や、`article:expiration_time`もルールの中で使用することができます。
-
-```
-// このビーコンがLIのJS SDKを呼び出して、$pを使えるようにする。同時に、トラッキング目的でユニークユーザを特定するためのファーストパーティーCookieを読み込みます。
-
-if (typeof $igniter_var === 'undefined') {
-  // クライアントコードをアップデート
-  (function(w, d, s, p, v, e, r) {
-    w.$ps = (w.performance && w.performance.now && typeof(w.performance.now) == "function") ? w.performance.now() : undefined;
-    w['$igniter_var'] = v;
-    w[v] = w[v] || function() {
-      (w[v].q = w[v].q || []).push(
-        arguments)
-    };
-    w[v].l = 1 * new Date();
-    e = d.createElement(s), r = d.getElementsByTagName(s)[0];
-    e.async = 1;
-    e.src = p + '?ts=' + (+new Date() / 3600000 | 0);
-    r.parentNode.insertBefore(e, r)
-  })(window, document, 'script', '//cdn.petametrics.com/f7tsbsle43k5irci.js', '$p');
-  // "f7tsbsle43k5irci"の部分は、自身のアカウントのJS keyに差し替えます。$p("init")関数の値も変更してください。
-
-  $p("init", "f7tsbsle43k5irci");
-}
-```
 
 ## ウィジェットコード
 
@@ -199,38 +207,6 @@ LiftIgniter<br> Recommendations
 ```
 
 ---
-
-## A/Bテスト用ビーコン
-
-サイト内のすべてのページにこのビーコンのコードを貼ります。通常のコンテンツ記事、動画、商品ページなどどこにでも貼れます。このコードを貼ったページに訪問があると、そのページのデータを自動的に収集します。
-
-実際にデータが収集されているか確かめる場合は、ネットワークログに`_inventory.gif`があるか確認してください。
-
-`//cdn.petametrics.com/`の後と、`$p("init")` 関数のJS keyを必ず差し替えてください。
-
-```
-// このビーコンがLIのJS SDKを呼び出して、$pを使えるようにする。同時に、トラッキング目的でユニークユーザを特定するためのファーストパーティーCookieを読み込みます。
-
-if (typeof $igniter_var === 'undefined') {
-  // クライアントコードをアップデート
-  (function(w, d, s, p, v, e, r) {
-    w.$ps = (w.performance && w.performance.now && typeof(w.performance.now) == "function") ? w.performance.now() : undefined;
-    w['$igniter_var'] = v;
-    w[v] = w[v] || function() {
-      (w[v].q = w[v].q || []).push(
-        arguments)
-    };
-    w[v].l = 1 * new Date();
-    e = d.createElement(s), r = d.getElementsByTagName(s)[0];
-    e.async = 1;
-    e.src = p + '?ts=' + (+new Date() / 3600000 | 0);
-    r.parentNode.insertBefore(e, r)
-  })(window, document, 'script', '//cdn.petametrics.com/f7tsbsle43k5irci.js', '$p');
-  // "f7tsbsle43k5irci"の部分は、自身のアカウントのJS keyに差し替えます。$p("init")関数の値も変更してください。
-
-  $p("init", "f7tsbsle43k5irci");
-}
-```
 
 ## A/Bテスト用ウィジェットコード
 
