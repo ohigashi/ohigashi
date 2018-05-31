@@ -1,4 +1,4 @@
-# リコメンデーションエリアHTML
+リコメンデーションエリアHTML
 
 [ウィジェット](#ウィジェット)  
 [スクリプト](#スクリプト)   
@@ -8,13 +8,15 @@
 ---
 ## ウィジェット
 
+LIのリコメンデーションを表示するエリアのHTMLサンプルです。A/Bテストを行う場合は、[A/Bテスト用ウィジェット](#A/Bテスト用ウィジェット)  を参照してください。
+
 ```
 <center><h1>
 LiftIgniter<br> Recommendations
 </h1></center>
 
 
-<!--The Recommendation Area where items will be displayed-->
+<!--リコメンデーションの表示エリア-->
 <div id="li-recommendation-unit">
   <div class='recommended_item li-widget-item'>
     <a class='headline' href='//url-1'>Title 1</a>
@@ -46,13 +48,11 @@ LiftIgniter<br> Recommendations
 ## スクリプト
 
 ```
-//----------Widget Display Template------------
-
 //---------- BEACON SNIPPET START------------
-// The Beacon calls our JS SDK, which allows the usage of the other $p functions seen below. It also applies a first-party tracking cookie to identify unique users.
+// このビーコンがLIのJS SDKを呼び出して、$pを使えるようにする。同時に、トラッキング目的でユニークユーザを特定するためのファーストパーティーCookieを読み込みます。
 
 if (typeof $igniter_var === 'undefined') {
-  // Ensures that our client code is updated.
+  // クライアントコードをアップデート
   (function(w, d, s, p, v, e, r) {
     w.$ps = (w.performance && w.performance.now && typeof(w.performance.now) == "function") ? w.performance.now() : undefined;
     w['$igniter_var'] = v;
@@ -66,17 +66,16 @@ if (typeof $igniter_var === 'undefined') {
     e.src = p + '?ts=' + (+new Date() / 3600000 | 0);
     r.parentNode.insertBefore(e, r)
   })(window, document, 'script', '//cdn.petametrics.com/f7tsbsle43k5irci.js', '$p');
-  // If you have a LiftIgniter account, you can replace "f7tsbsle43k5irci" with your own JS key to get recommendations from your own inventory. Make sure to replace it in the URL above, and in the $p("init") function below.
+  // "f7tsbsle43k5irci"の部分は、自身のアカウントのJS keyに差し替えます。$p("init")関数の値も変更してください。
 
   $p("init", "f7tsbsle43k5irci");
-  //This demo account only has 4 items in the inventory, so that is the maximum number of items it can return.
 }
 //---------- BEACON SNIPPET END------------
 
 //---------- WIDGET CODE START------------
 
 //-- 1. Define Rendering Area --
-//$p('render') uses the Template defined in the HTML above to overwrite the Recommendation Area with the items recommended by LiftIgniter.
+//$p('render') は、HTMLで指定されたテンプレートで、ターゲットのエリアをLIのリコメンデーションアイテムで上書きします。 
 var rendering_callback = function(resp) {
   var els = document.querySelectorAll('#li-recommendation-unit > div.li-widget-item');
   var template = document.querySelector('#recommended-item-template').innerHTML;
@@ -88,11 +87,11 @@ var rendering_callback = function(resp) {
 }
 
 //-- 2. Define Items to be Tracked --
-//$p('track') attaches event listeners and query string parameters to each href in the recommendation area.
+//$p('track') は、イベントリスナーと、クエリ文字列のパラメータをリコメンデーションエリアの各URLにアタッチします。
 var trackAlgo = function(algorithm) {
   $p('track', {
     elements: document.querySelectorAll('#li-recommendation-unit > div.li-widget-item'),
-    //make sure that the "name" value selected here matches the value of "widget" in the $p("register") function. This allows us to match recommendation requests to the widget activity reported in our dashboard.
+    //ここで指定する"name"の値は、$p("register") 関数の"widget"の値と一致するようにしてください。ここが一致していると、ウィジェットへのリコメンデーションリクエストをダッシュボード上のウィジェットアクティビティに紐付けることができます。
     name: 'default-widget',
     source: algorithm
   });
@@ -103,10 +102,10 @@ $p('register', {
   max: 4,
   widget: 'default-widget',
   callback: function(resp) {
-    // You might wish to wrap the code in this callback inside jQuery, to handle load order issues
-    // Trigger rendering once recommendations are returned
+    // このcallbackのコードはの中にwrapすることで、ロードの順番の問題を解消することができます。
+    // リコメンデーションが返されたら、renderingを一度呼び出す。
     rendering_callback(resp);
-    // Track items in the Recommendation Area with a source of "LI" to identify where the recommendations came from.
+    // リコメンデーションエリアのアイテムを”LI"のソース名でトラックする。
     trackAlgo('LI');
   }
 });
@@ -120,12 +119,14 @@ $p('fetch');
 ---
 ## A/Bテスト用ウィジェット
 
+LIのリコメンデーションをA/Bテストしながら表示するエリアのHTMLサンプルです。A/Bテストを行わない場合は、[ウィジェット](#ウィジェット)  を参照してください。
+
 ```
 <center><h1>
 LiftIgniter<br> Recommendations
 </h1></center>
 
-<!--The Recommendation Area where items will be displayed-->
+<!--リコメンデーションの表示エリア-->
 <div style="height:100px;width:470px" id="li-recommendation-unit">
   <div style="text-align: center;"  class='recommended_item li-widget-item'>
     <a class='headline' href='//url-1'>Title 1</a>
@@ -160,10 +161,10 @@ LiftIgniter<br> Recommendations
 
 ```
 //---------- BEACON SNIPPET START------------
-// The Beacon calls our JS SDK, which allows the usage of the other $p functions seen below. It also applies a first-party tracking cookie to identify unique users.
+// このビーコンがLIのJS SDKを呼び出して、$pを使えるようにする。同時に、トラッキング目的でユニークユーザを特定するためのファーストパーティーCookieを読み込みます。
 
 if (typeof $igniter_var === 'undefined') {
-  // Ensures that our client code is updated.
+  // クライアントコードをアップデート
   (function(w, d, s, p, v, e, r) {
     w.$ps = (w.performance && w.performance.now && typeof(w.performance.now) == "function") ? w.performance.now() : undefined;
     w['$igniter_var'] = v;
@@ -177,14 +178,13 @@ if (typeof $igniter_var === 'undefined') {
     e.src = p + '?ts=' + (+new Date() / 3600000 | 0);
     r.parentNode.insertBefore(e, r)
   })(window, document, 'script', '//cdn.petametrics.com/f7tsbsle43k5irci.js', '$p');
-  // If you have a LiftIgniter account, you can replace "f7tsbsle43k5irci" with your own JS key to get recommendations from your own inventory. Make sure to replace it in the URL above, and in the $p("init") function below.
+  // "f7tsbsle43k5irci"の部分は、自身のアカウントのJS keyに差し替えます。$p("init")関数の値も変更してください。
 
   $p("init", "f7tsbsle43k5irci");
-  //This JS key will return a max of 4 test items from LiftIgniter.
 }
 //---------- BEACON SNIPPET END------------
 
-//$p('render') uses the template defined in the HTML to overwrite the target area with the items recommended by LiftIgniter.
+//$p('render') は、HTMLで指定されたテンプレートで、ターゲットのエリアをLIのリコメンデーションアイテムで上書きします。 
 var rendering_callback = function(resp) {
   var els = document.querySelectorAll('#li-recommendation-unit > div.li-widget-item');
   var template = document.querySelector('#recommended-item-template').innerHTML;
@@ -195,11 +195,11 @@ var rendering_callback = function(resp) {
   }
 }
 
-//$p('track') attaches event listeners and query string parameters to each URL in the recommendation area.
+//$p('track') は、イベントリスナーと、クエリ文字列のパラメータをリコメンデーションエリアの各URLにアタッチします。
 var trackAlgo = function(algorithm) {
   $p('track', {
     elements: document.querySelectorAll('#li-recommendation-unit > div.li-widget-item'),
-    //make sure that the "name" value selected here matches the value of "widget" in the $p("register") function. This allows us to match recommendation requests to the widget activity reported in our dashboard.
+    //ここで指定する"name"の値は、$p("register") 関数の"widget"の値と一致するようにしてください。ここが一致していると、ウィジェットへのリコメンデーションリクエストをダッシュボード上のウィジェットアクティビティに紐付けることができます。
     name: 'default-widget',
     source: algorithm
   });
@@ -216,18 +216,18 @@ var abTestHandler = function(slice) {
       max: 4,
       widget: 'default-widget',
       callback: function(resp) {
-        // You might wish to wrap the code in this callback inside jQuery, to handle load order issues
-        // Trigger rendering once recommendations are returned
+    // このcallbackのコードはの中にwrapすることで、ロードの順番の問題を解消することができます。
+    // リコメンデーションが返されたら、renderingを一度呼び出す。
         rendering_callback(resp);
-        // track the source of the recommendations as 'LI' because they were recommended by LiftIgniter.
+    // LIから提供されたリコメンデーションエリアのアイテムを”LI"のソース名でトラックする。
         trackAlgo('LI');
       }
     });
   } else {
-    // track the source of the recommendations as 'base' for the control slice of the A|B test.
+    // A/Bテスト対象のリコメンデーションエリアのアイテムを”base"のソース名でトラックする。
     trackAlgo('base');
   }
-  // Executes $p("register") and all arguments to get the recommendations.
+  // $p("register") とすべての引数を実行してリコメンデーションを取得する。
   $p('fetch');
 }
 
