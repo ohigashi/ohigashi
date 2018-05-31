@@ -287,7 +287,7 @@ $p("setMandatoryRequestFields",["title","url"])
 
 収集するフィールド名の追加は、上に記した`<script id="liftigniter-metadata" type="application/json">`を使って各ページのHTMLにLI用のJSONとしてデータを作成してください。
 
-### トレンドしているアイテムを取得する
+### トレンドしているアイテムを取得する（オプション）
 
 `opts`のパラメータを指定してトレンドしているアイテムを取得することができます。
 
