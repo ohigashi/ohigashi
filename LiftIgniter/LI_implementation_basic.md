@@ -75,9 +75,23 @@ if (typeof $igniter_var === 'undefined') {
 <meta property="og:title" content="sample-title"/>
 ```
 
+### Canonical URLの指定
+
+パラメータが追加されたURLなど、URLを変動させることがある場合は、`$p("init")`に`config: customConfig`を追加して、その前の部分に下記の通りコードを追加することで、各ページのCanonical URLをURLとして収集することができます。
+
+```
+var customConfig = {
+  activity: {
+    canonicalUrlTransform: function(url){return url}
+  }
+}
+
+$p("init", {JAVASCRIPT_KEY}, {config: customConfig}); // REPLACE JAVASCRIPT_KEY
+```
+
 ### タイムスタンプ（オプション）
 
-タイムスタンプを使用してルールの適用を行う場合は、`article:published_time`のフィールドを追加してください。`article:modified_time`や、`article:expiration_time`もルールの中で使用することができます。ここでのタイムスタンプのフォーマットは、[ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html)に準ずる形式で指定してください。
+タイムスタンプを使用してルールの適用を行う場合は、`article:published_time`のフィールドを追加してください。`article:modified_time`や、`article:expiration_time`もルールの中で使用することができます。ここでのタイムスタンプのフォーマットは、[ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html)に準ずる形式で指定してください。これらのフィールド名は、`article:`の部分を削除して収集されます。
 
 ### カスタムイベントの送信（オプション）
 
