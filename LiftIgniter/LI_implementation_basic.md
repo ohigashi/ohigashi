@@ -16,8 +16,7 @@ LiftIgniterの実装には、Webサイトのデータ収集用のビーコンス
 
 * LI用のJSON
 ```
-<script id="liftigniter-metadata"
-type="application/json">
+<script id="liftigniter-metadata" type="application/json">
 { "tags" : ["apple", "nutrition"]}
 </script>
 ```
@@ -33,9 +32,7 @@ type="application/json">
 ```
 <script id="liftigniter-metadata" type="application/json">
 {
-  ...
   "noShow" : "true",
-  ...
 }
 </script>
 ```
@@ -90,9 +87,7 @@ LIのリコメンデーションを表示するエリアのHTMLサンプルで�
 `{{}}`のテンプレート内のパラメータは、インベントリのmetadataのパラメータと一致するようにしてください。
 
 ```
-<center><h1>
-LiftIgniter<br> Recommendations
-</h1></center>
+<h1>LiftIgniter<br> Recommendations</h1>
 
 <!--リコメンデーションの表示エリア-->
 <div id="li-recommendation-unit">
@@ -166,7 +161,6 @@ $p('register', {
   }
 });
 
-
 $p('fetch');
 ```
 
@@ -203,9 +197,7 @@ $p("register",{
 LIのリコメンデーションをA/Bテストしながら表示するエリアのHTMLサンプルです。
 
 ```
-<center><h1>
-LiftIgniter<br> Recommendations
-</h1></center>
+<h1>LiftIgniter<br> Recommendations</h1>
 
 <!--リコメンデーションの表示エリア-->
 <div style="height:100px;width:470px" id="li-recommendation-unit">
