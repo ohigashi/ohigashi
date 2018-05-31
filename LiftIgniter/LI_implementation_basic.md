@@ -87,7 +87,7 @@ LIのリコメンデーションを表示するエリアのHTMLサンプルで�
 `{{}}`のテンプレート内のパラメータは、インベントリのmetadataのパラメータと一致するようにしてください。
 
 ```
-<h1>LiftIgniter<br> Recommendations</h1>
+<h1>LiftIgniter Recommendations</h1>
 
 <!--リコメンデーションの表示エリア-->
 <div id="li-recommendation-unit">
@@ -197,19 +197,19 @@ $p("register",{
 LIのリコメンデーションをA/Bテストしながら表示するエリアのHTMLサンプルです。
 
 ```
-<h1>LiftIgniter<br> Recommendations</h1>
+<h1>LiftIgniter Recommendations</h1>
 
 <!--リコメンデーションの表示エリア-->
-<div style="height:100px;width:470px" id="li-recommendation-unit">
-  <div style="text-align: center;"  class='recommended_item li-widget-item'>
+<div id="li-recommendation-unit">
+  <div class='recommended_item li-widget-item'>
     <a class='headline' href='//url-1'>Title 1</a>
   </div>
 
-  <div style="text-align: center;"  class='recommended_item li-widget-item'>
+  <div class='recommended_item li-widget-item'>
   <a style="text-align: center;" class='headline' href='//url-2'>Title 1</a>
   </div>
 
-  <div style="text-align: center;"  class='recommended_item li-widget-item'>
+  <div class='recommended_item li-widget-item'>
     <a class='headline' href='//url-3'>Title 3</a>
   </div>
 
