@@ -62,7 +62,7 @@ if (typeof $igniter_var === 'undefined') {
 
 ### ビーコンいろいろ（オプション）
 
-ビーコンがページから収集するmetadataは下記の2種類です。LI用のJSONとOpenGraphタグで重複がある場合は、基本的にLI用のJSONの値が優先されます。
+ビーコンがページから収集するmetadataは下記の2種類です。LI用のJSONとOpenGraphタグで重複がある場合は、基本的にLI用のJSONの値が優先されます。LI用のJSONを使用して様々なmetadataを追加することができます。
 
 * LI用のJSON
 ```
@@ -75,7 +75,7 @@ if (typeof $igniter_var === 'undefined') {
 <meta property="og:title" content="sample-title"/>
 ```
 
-### Canonical URLの指定
+### Canonical URLの指定（オプション）
 
 パラメータが追加されたURLなど、URLを変動させることがある場合は、`$p("init")`に`config: customConfig`を追加して、その前の部分に下記の通りコードを追加することで、各ページのCanonical URLをURLとして収集することができます。
 
@@ -286,6 +286,25 @@ $p("setMandatoryRequestFields",["title","url"])
 ```
 
 収集するフィールド名の追加は、上に記した`<script id="liftigniter-metadata" type="application/json">`を使って各ページのHTMLにLI用のJSONとしてデータを作成してください。
+
+### トレンドしているアイテムを取得する
+
+`opts`のパラメータを指定してトレンドしているアイテムを取得することができます。
+
+`rankingKey`では、指定した値のランキングの降順でアイテムを取得します。ここで指定できる値は、"click", "visible", "show", "click:visible", "click:show", "visible:show"です。ここでの":"は、各値の比率を表します。
+
+`lookupKey`では、"popular"または"click"を指定できます。それぞれ、閲覧数、クリック数の多いアイテムを取得します。 
+
+`hoursBehind`で指定した時間内での、`rankingKey`および`lookupKey`で指定した値の結果を取得します。
+
+例えば、24時間以内にクリック数が多かったアイテムのランキングを取得する場合は下記のように値を設定します。
+
+```
+  opts: {
+    "rankingKey": "click",
+    "hoursBehind": 24
+  },
+```
 
 ---
 
