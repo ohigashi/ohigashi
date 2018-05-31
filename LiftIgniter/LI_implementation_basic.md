@@ -8,9 +8,36 @@ LiftIgniterの実装には、Webサイトのデータ収集用のビーコンス
 
 サイト内のすべてのページにこのビーコンのコードを貼ります。通常のコンテンツ記事、動画、商品ページなどどこにでも貼れます。このコードを貼ったページに訪問があると、データを自動的に収集します。
 
+このビーコンがLIのJS SDKを呼び出して、$pを使えるようにする。同時に、トラッキング目的でユニークユーザを特定するためのファーストパーティーCookieを読み込みます。
+
+```
+if (typeof $igniter_var === 'undefined') {
+  // クライアントコードをアップデート
+  (function(w, d, s, p, v, e, r) {
+    w.$ps = (w.performance && w.performance.now && typeof(w.performance.now) == "function") ? w.performance.now() : undefined;
+    w['$igniter_var'] = v;
+    w[v] = w[v] || function() {
+      (w[v].q = w[v].q || []).push(
+        arguments)
+    };
+    w[v].l = 1 * new Date();
+    e = d.createElement(s), r = d.getElementsByTagName(s)[0];
+    e.async = 1;
+    e.src = p + '?ts=' + (+new Date() / 3600000 | 0);
+    r.parentNode.insertBefore(e, r)
+  })(window, document, 'script', '//cdn.petametrics.com/JS_KEY.js', '$p');
+  // "JS_KEY"の部分は、自身のアカウントのJS_KEYに差し替えます。$p("init")関数の値も変更してください。
+
+  $p("init", "JS_KEY"); // JS_KEYを差し替える
+  $p("send", "pageview");
+}
+```
+
 `//cdn.petametrics.com/`の後と、`$p("init")` 関数のJS_KEYを必ず差し替えてください。
 
 実際にデータが収集されているか確かめる場合は、ネットワークログに`_inventory.gif`があるか確認してください。
+
+### ビーコンいろいろ
 
 ここで収集されるmetadataは下記のとおりです。LI用のJSONとOpenGraphタグで重複がある場合は、基本的にLI用のJSONの値が優先されます。
 
@@ -39,36 +66,7 @@ LiftIgniterの実装には、Webサイトのデータ収集用のビーコンス
 
 タイムスタンプを使用してルールの適用を行う場合は、`article:published_time`のフィールドを追加してください。`article:modified_time`や、`article:expiration_time`もルールの中で使用することができます。ここでのタイムスタンプのフォーマットは、[ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html)に準ずる形式で指定してください。
 
----
-
-## ビーコンのコード
-
-このビーコンがLIのJS SDKを呼び出して、$pを使えるようにする。同時に、トラッキング目的でユニークユーザを特定するためのファーストパーティーCookieを読み込みます。
-
-```
-if (typeof $igniter_var === 'undefined') {
-  // クライアントコードをアップデート
-  (function(w, d, s, p, v, e, r) {
-    w.$ps = (w.performance && w.performance.now && typeof(w.performance.now) == "function") ? w.performance.now() : undefined;
-    w['$igniter_var'] = v;
-    w[v] = w[v] || function() {
-      (w[v].q = w[v].q || []).push(
-        arguments)
-    };
-    w[v].l = 1 * new Date();
-    e = d.createElement(s), r = d.getElementsByTagName(s)[0];
-    e.async = 1;
-    e.src = p + '?ts=' + (+new Date() / 3600000 | 0);
-    r.parentNode.insertBefore(e, r)
-  })(window, document, 'script', '//cdn.petametrics.com/JS_KEY.js', '$p');
-  // "JS_KEY"の部分は、自身のアカウントのJS_KEYに差し替えます。$p("init")関数の値も変更してください。
-
-  $p("init", "JS_KEY"); // JS_KEYを差し替える
-  $p("send", "pageview");
-}
-```
-
-ここでユーザIDをビーコンに追加して送りたい場合は、下記の通り`$p("init")`と`$("send") `の間に`$p("setUserId")`を追加してください。異なるデバイス間のユーザの行動をトラックすることができます。
+ページ閲覧ごとにユーザIDを追加して送りたい場合は、下記の通り`$p("init")`と`$("send") `の間に`$p("setUserId")`を追加してください。異なるデバイス間のユーザの行動をトラックすることができます。
 
 ```
 $p("init", "JS_KEY");
