@@ -4,8 +4,8 @@
 <script type="text/javascript">
   var _sf_async_config = _sf_async_config || {};
   /** CONFIGURATION START **/
-  _sf_async_config.uid = #####; /** CHANGE TO YOUR CHARTBEAT ACCOUNT ID **/
-  _sf_async_config.domain = 'yoursite.com'; /** CHANGE THIS **/
+  _sf_async_config.uid = Chartbeatアカウント名;
+  _sf_async_config.domain = 'Webサイトドメイン名';
   _sf_async_config.flickerControl = false;
   _sf_async_config.useCanonical = true;
   _sf_async_config.useCanonicalDomain = true;
@@ -22,8 +22,8 @@
       /** CONFIGURATION START **/
       var _sf_async_config = window._sf_async_config = (window._sf_async_config || {});
 
-      _sf_async_config.sections = ''; //CHANGE THIS TO YOUR SECTION NAME(s)
-      _sf_async_config.authors = ''; //CHANGE THIS TO YOUR AUTHOR NAME(s)
+      _sf_async_config.sections = 'セクション名'; // 複数ある場合はコロンで区切る
+      _sf_async_config.authors = '著者名'; // 複数ある場合はコロンで区切る
       /** CONFIGURATION END **/
       function loadChartbeat() {
           var e = document.createElement('script');
