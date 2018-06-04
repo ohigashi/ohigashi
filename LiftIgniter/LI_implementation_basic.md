@@ -217,7 +217,7 @@ $p('fetch');
 `$p("register")`は、`$p("fetch")`の前に複数回呼ぶことができます。それぞれの`$p("register")`に対して、個別の`opts`のパラメータを指定することができます。
 
 ```
-// Requests for articles that were published within last 24 hours
+// 24時間以内に投稿された記事をリクエストする
 $p("register",{
   max:5,
   widget: "new_news", // ここに個別のウィジェット名を入れます
@@ -227,7 +227,7 @@ $p("register",{
   }
 })
 
-// Requests for articles that's marked as news.
+// ニュース記事だけを取得する
 $p("register",{
   max:5,
   widget: "news_rec", // ここに個別のウィジェット名を入れます
@@ -237,8 +237,8 @@ $p("register",{
   }
 })
 
-// Calling fetch once executes both registers.
-// Results in two different kinds of recommendations.
+// fetchは一階呼ぶだけで2つのregisterを実行します
+// これで2種類のリコメンデーションを取得します
 $p("fetch")
 ```
 
