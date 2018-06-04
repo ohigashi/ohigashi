@@ -1,54 +1,39 @@
-# Chartbeatコードの実装
-
-1. 下記コードをWebサイトの```<head>```部内に追加する。 
+1. 下記コードをHTMLの`<head>`タグ内に追加する。
 
 ```
 <script type="text/javascript">
-    var _sf_async_config = _sf_async_config || {};
-    /** CONFIGURATION START **/
-    _sf_async_config.uid = ####; /** ここにChartbeatのUIDを入れる **/
-    _sf_async_config.domain = 'domain.com'; /** ここにWebサイトのドメイン名を入れる **/
-    _sf_async_config.useCanonical = true;
-    /** CONFIGURATION END **/
-    var _sf_startpt = (new Date()).getTime();
+  var _sf_async_config = _sf_async_config || {};
+  /** CONFIGURATION START **/
+  _sf_async_config.uid = #####; /** CHANGE TO YOUR CHARTBEAT ACCOUNT ID **/
+  _sf_async_config.domain = 'yoursite.com'; /** CHANGE THIS **/
+  _sf_async_config.flickerControl = false;
+  _sf_async_config.useCanonical = true;
+  _sf_async_config.useCanonicalDomain = true;
+  /** CONFIGURATION END **/
 </script>
 <script async src="//static.chartbeat.com/js/chartbeat_mab.js"></script>
 ```
 
-Canonicalリンクを使用する場合は、下記のように```<head>```部内のスクリプトの前に設定しておく。
-```
-<link rel="canonical" href="http://www.seomoz.org/blog">
-```
-
-2. 下記コードをWebサイトの```</body>```タグ前に追加する。 
+2. 下記コードをHTMLの`<body>`タグ内のなるべく上の部分に追加する。
 
 ```
 <script type='text/javascript'>
-    var _sf_async_config = _sf_async_config || {};
-    /** CONFIGURATION START **/
-    _sf_async_config.sections = 'Change this to your Section name'; //ここにセクション名を入れる
-    _sf_async_config.authors = 'Change this to your Author name'; //ここに著者名を入れる
-    /** CONFIGURATION END **/
-    (function() {
-        function loadChartbeat() {
-            var e = document.createElement('script');
-            e.setAttribute('language', 'javascript');
-            e.setAttribute('type', 'text/javascript');
-            e.setAttribute('src', '//static.chartbeat.com/js/chartbeat.js');
-            document.body.appendChild(e);
-        }
-        var oldonload = window.onload;
-        window.onload = (typeof window.onload != 'function') ?
-            loadChartbeat : function() {
-                oldonload();
-                loadChartbeat();
-            };
-    })();
+  (function() {
+      /** CONFIGURATION START **/
+      var _sf_async_config = window._sf_async_config = (window._sf_async_config || {});
+
+      _sf_async_config.sections = ''; //CHANGE THIS TO YOUR SECTION NAME(s)
+      _sf_async_config.authors = ''; //CHANGE THIS TO YOUR AUTHOR NAME(s)
+      /** CONFIGURATION END **/
+      function loadChartbeat() {
+          var e = document.createElement('script');
+          var n = document.getElementsByTagName('script')[0];
+          e.type = 'text/javascript';
+          e.async = true;
+          e.src = '//static.chartbeat.com/js/chartbeat.js';
+          n.parentNode.insertBefore(e, n);
+      }
+      loadChartbeat();
+   })();
 </script>
 ```
-
-## 追記
-
-Chartbeatのドメイン追加とコードの確認は[https://chartbeat.com/publishing/setup/code](https://chartbeat.com/publishing/setup/code)から。
-
-同じRootドメイン下でサブドメインごとに別サイトとして分析したい場合もここからサブドメインを追加してコードを取得する。
