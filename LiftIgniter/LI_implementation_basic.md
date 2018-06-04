@@ -23,7 +23,7 @@ LIを実装するサイト内のすべてのページにビーコンのコード
 
 ビーコンは`<head>`か`<body>`の中で、リコメンデーションの表示部より前に置きます。  
 
-### ビーコンのコード  
+#### ビーコンのコード  
 
 ```
 if (typeof $igniter_var === 'undefined') {
@@ -62,7 +62,7 @@ if (typeof $igniter_var === 'undefined') {
 </script>
 ```
 
-### ビーコンいろいろ（オプション）
+#### ビーコンいろいろ（オプション）
 
 ビーコンがページから収集するmetadataは下記の2種類です。LI用のJSONとOpenGraphタグで重複がある場合は、基本的にLI用のJSONの値が優先されます。LI用のJSONを使用して様々なmetadataを追加することができます。
 
@@ -77,7 +77,7 @@ if (typeof $igniter_var === 'undefined') {
 <meta property="og:title" content="sample-title"/>
 ```
 
-### Canonical URLの指定（オプション）
+#### Canonical URLの指定（オプション）
 
 パラメータが追加されたURLなど、URLを変動させることがある場合は、`$p("init")`に`config: customConfig`を追加して、その前の部分に下記の通りコードを追加することで、各ページのCanonical URLをURLとして収集することができます。
 
@@ -91,11 +91,11 @@ var customConfig = {
 $p("init", {JAVASCRIPT_KEY}, {config: customConfig}); // REPLACE JAVASCRIPT_KEY
 ```
 
-### タイムスタンプ（オプション）
+#### タイムスタンプ（オプション）
 
 タイムスタンプを使用してルールの適用を行う場合は、`article:published_time`のフィールドを追加してください。`article:modified_time`や、`article:expiration_time`もルールの中で使用することができます。ここでのタイムスタンプのフォーマットは、[ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html)に準ずる形式で指定してください。これらのフィールド名は、`article:`の部分を削除して収集されます。
 
-### カスタムイベントの送信（オプション）
+#### カスタムイベントの送信（オプション）
 
 カスタムのイベント（エンゲージメント、コンバージョンなど）を送りたい場合は、下記のように`$p("send")`関数を使ってイベントのデータを送ってください。
 
@@ -116,7 +116,7 @@ $p('send', 'conversion', {
 })
 ```
 
-### ユーザIDの送信（オプション）
+#### ユーザIDの送信（オプション）
 
 ページ閲覧ごとにユーザIDを追加して送りたい場合は、下記の通り`$p("init")`と`$("send") `の間に`$p("setUserId")`を追加してください。異なるデバイス間のユーザの行動をトラックすることができます。
 
@@ -212,47 +212,7 @@ $p('register', {
 $p('fetch');
 ```
 
-### リコメンデーションアイテムのフィルタリング（オプション）
-
-ここでアイテムのフィルタリングを行いたい場合は、ウィジェット単位で、下記のように`opts:`で条件を指定して、アイテムのフィルタリングを行うことができます。
-
-24時間（86400秒）以内にPublishされたアイテムだけをリクエストする。
-```
-$p("register",{
-  max:5,
-  widget: 'default-widget',
-  opts: {maxAgeInSeconds: 86400},
-  callback: function(resp){
-    console.log(resp)
-  }
-})
-```
-
-`news`のカテゴリのアイテムだけをリクエストする。
-```
-$p("register",{
-  max:5,
-  widget: 'default-widget',
-  opts: {category: "news"},
-  callback: function(resp){
-    console.log(resp)
-  }
-})
-```
-
-ここで複数の値に対してフィルタリングを適用したい場合は、`$p("register"`に`opts: {"category": ["news, "sports", "baseball"]},`のようにJSON配列を使って複数の値を指定してください。  
-
-### 特定のアイテムをブーストする  （オプション）
-
-個別のアイテムをリコメンデーションの中でブーストすることができます。ブーストしたいアイテムのLI用のJSONに、`"value" : "high"`を追加してください。  
-
-この他にも、特定のカテゴリや単価の高い商品ページをブーストすることもできます。この設定方法についてはサポート担当にお問い合わせください。  
-
-### 特定のアイテムをリコメンデーションから省く（オプション）
-
-URL単位で特定のアイテムをリコメンデーションから省きたい場合は、`$p("register"`に`opts: {excludeItems : ["url1", "url2"]},`を追加してください。ここでの`url1`や`url2`には、リコメンデーションに含めたくないアイテムのURLを入れます。
-
-### 同一ページで複数のウィジェットのリコメンデーションのリクエストを送る（オプション）
+#### 同一ページで複数のウィジェットのリコメンデーションのリクエストを送る（オプション）
 
 `$p("register")`は、`$p("fetch")`の前に複数回呼ぶことができます。それぞれの`$p("register")`に対して、個別の`opts`のパラメータを指定することができます。
 
@@ -282,7 +242,7 @@ $p("register",{
 $p("fetch")
 ```
 
-### 取得するフィールド名を指定する（オプション）
+#### 取得するフィールド名を指定する（オプション）
 
 リコメンデーションアイテムと一緒に返されるフィールドを指定する。
 ```
@@ -301,7 +261,7 @@ $p("setMandatoryRequestFields",["title","url"])
 
 収集するフィールド名の追加は、上に記した`<script id="liftigniter-metadata" type="application/json">`を使って各ページのHTMLにLI用のJSONとしてデータを作成してください。
 
-### トレンドしているアイテムを取得する（オプション）
+#### トレンドしているアイテムを取得する（オプション）
 
 `opts`のパラメータを指定してトレンドしているアイテムを取得することができます。
 
@@ -319,6 +279,46 @@ $p("setMandatoryRequestFields",["title","url"])
     "hoursBehind": 24
   },
 ```
+
+#### リコメンデーションアイテムのフィルタリング（オプション）
+
+ここでアイテムのフィルタリングを行いたい場合は、ウィジェット単位で、下記のように`opts:`で条件を指定して、アイテムのフィルタリングを行うことができます。
+
+24時間（86400秒）以内にPublishされたアイテムだけをリクエストする。
+```
+$p("register",{
+  max:5,
+  widget: 'default-widget',
+  opts: {maxAgeInSeconds: 86400},
+  callback: function(resp){
+    console.log(resp)
+  }
+})
+```
+
+`news`のカテゴリのアイテムだけをリクエストする。
+```
+$p("register",{
+  max:5,
+  widget: 'default-widget',
+  opts: {category: "news"},
+  callback: function(resp){
+    console.log(resp)
+  }
+})
+```
+
+ここで複数の値に対してフィルタリングを適用したい場合は、`$p("register"`に`opts: {"category": ["news, "sports", "baseball"]},`のようにJSON配列を使って複数の値を指定してください。  
+
+#### 特定のアイテムをブーストする  （オプション）
+
+個別のアイテムをリコメンデーションの中でブーストすることができます。ブーストしたいアイテムのLI用のJSONに、`"value" : "high"`を追加してください。  
+
+この他にも、特定のカテゴリや単価の高い商品ページをブーストすることもできます。この設定方法についてはサポート担当にお問い合わせください。  
+
+#### 特定のアイテムをリコメンデーションから省く（オプション）
+
+URL単位で特定のアイテムをリコメンデーションから省きたい場合は、`$p("register"`に`opts: {excludeItems : ["url1", "url2"]},`を追加してください。ここでの`url1`や`url2`には、リコメンデーションに含めたくないアイテムのURLを入れます。
 
 ---
 
