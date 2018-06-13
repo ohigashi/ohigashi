@@ -8,9 +8,9 @@ if (typeof $igniter_var === 'undefined') {
 arguments)};w[v].l=1*new Date();e=d.createElement(s),r=d.getElementsByTagName(s)[0];e.async=1;
 e.src=p+'?ts='+(+new Date()/3600000|0);
 r.parentNode.insertBefore(e,r)})(window,document,'script','//cdn.petametrics.com/{JAVASCRIPT_KEY}.js','$p');
-// Don't forget to REPLACE JAVASCRIPT_KEY for cdn url.
+// JAVASCRIPT_KEYを差し替えてください
 
-$p("init", {JAVASCRIPT_KEY}); // REPLACE JAVASCRIPT_KEY
+$p("init", {JAVASCRIPT_KEY}); // JAVASCRIPT_KEYを差し替えてください
 $p("send", "pageview");
 }
 </script>
@@ -36,7 +36,7 @@ $p("send", "pageview");
 
 ```
 $p('register', {
-    max: 5, // Number of items you want to show
+    max: 5, // リコメンデーションに表示するアイテムの数
     widget: 'default-widget',
     callback: function(resp) {
       // Query selector should match div name from Recommendation Area
