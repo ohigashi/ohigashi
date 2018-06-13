@@ -27,20 +27,11 @@ Twitter: [@h_ohigashi](https://twitter.com/h_ohigashi)
 
 ## Contents
 
-過去のBlog記事やプロジェクト絡みのニュースレーター記事などを保存しています。
+[Blog記事](articles)
 
-[2017_2Q_Verisign_Domain_Industry_Brief](articles/2017_2Q_Verisign_Domain_Industry_Brief.md)
+[chartbeat関連記事](chartbeat)
 
-[2017_3Q_Verisign_Domain_Industry_Brief](articles/2017_3Q_Verisign_Domain_Industry_Brief.md)
+[LiftIgniter関連記事](LiftIgniter)
 
-[SEOに有効なドメインの選び方](articles/SEOに有効なドメインの選び方.md)
-
-[.comで多発するサイバースクワッティング](articles/comで多発するサイバースクワッティング.md)
-
-[2018年4月 Webトレンドあれこれあれこれ](articles/201804_Webトレンドあれこれあれこれ.md)
-
-[ブランドドメインの活用](articles/ブランドドメインの活用.md)
-
-[今さら聞けないGoogle Analyticsのあれこれ](articles/今さら聞けないGoogleAnalyticsのあれこれ.md)
-
+[PSI-Japan関連記事](PSI-Japan)
 
