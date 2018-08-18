@@ -21,10 +21,6 @@ Twitter: [@h_ohigashi](https://twitter.com/h_ohigashi)
 
 [PierX](https://pierx.co)
 
-[namegear](https://namegear.co)
-
-[PSI-JAPAN](https://psi.jp)
-
 ## Contents
 
 [Blog記事](articles)
@@ -33,5 +29,4 @@ Twitter: [@h_ohigashi](https://twitter.com/h_ohigashi)
 
 [LiftIgniter関連記事](LiftIgniter)
 
-[PSI-Japan関連記事](PSI-Japan)
 
