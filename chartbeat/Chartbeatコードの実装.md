@@ -42,7 +42,7 @@ http://support.chartbeat.com/docs/#path
 
 http://support.chartbeat.com/docs/#mobile
 
-## AJAX使用サイトの場合
+## AJAXや無限スクロールを使用しているサイトの場合
 
 http://support.chartbeat.com/docs/#ajax
 
