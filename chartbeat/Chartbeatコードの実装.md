@@ -1,5 +1,6 @@
 ## Chartbeat 基本コード
 
+
 ```
 <script type='text/javascript'>
     (function() {
@@ -36,7 +37,9 @@
 ## デバイスなどによってURL構造が異なるまたは複数ページにまたがる記事（ページネーション）を同じ記事として分析したい場合
 
 http://support.chartbeat.com/docs/#canonical
+
 http://support.chartbeat.com/docs/#path
+
 http://support.chartbeat.com/docs/#mobile
 
 ## AJAX使用サイトの場合
